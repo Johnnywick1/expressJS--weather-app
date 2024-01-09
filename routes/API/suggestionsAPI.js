@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
-const primaryToken = process.env.MAPBOX_API_TOKEN;
+const primaryToken = 'pk.eyJ1IjoieWFwYWxleGVpIiwiYSI6ImNqNGVuaDRwdjBwZ2MycW1rM2FrMmpmNTQifQ.ouDro4DGQ4viVjdBgaI_Xg';
 
 router.get('/', async (req, res) => {
     re = new RegExp(/\w+/);
