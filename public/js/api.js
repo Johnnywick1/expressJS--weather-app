@@ -1,6 +1,6 @@
 'use strict';
 
-const getWeather = async function (
+async function getWeather(
     location,
     isPreview = false,
     geoPositionUpdate = false
@@ -40,14 +40,9 @@ const getWeather = async function (
                 );
             }
         });
-};
+}
 
-const parseWeatherData = function (
-    location,
-    data,
-    isPreview,
-    geoPositionUpdate
-) {
+function parseWeatherData(location, data, isPreview, geoPositionUpdate) {
     // console.log(data);
     console.log(data.alerts || 'no alerts');
     console.log(data.events || 'no events');
@@ -162,9 +157,9 @@ const parseWeatherData = function (
         );
     }
     saveWeatherData(id, weatherData, geoPositionUpdate);
-};
+}
 
-const saveWeatherData = function (id, weatherData, geoPositionUpdate) {
+function saveWeatherData(id, weatherData, geoPositionUpdate) {
     // console.log('geoPositionUpdate', geoPositionUpdate);
     localStorage.setItem('weatherData-' + id, JSON.stringify(weatherData));
     window.dispatchEvent(
@@ -178,9 +173,9 @@ const saveWeatherData = function (id, weatherData, geoPositionUpdate) {
             },
         })
     );
-};
+}
 
-const getSuggestions = async function (query) {
+async function getSuggestions(query) {
     axios({
         url: '/api/suggestions',
         method: 'get',
@@ -205,9 +200,9 @@ const getSuggestions = async function (query) {
                 );
             }
         });
-};
+}
 
-const parseSuggestions = function (
+function parseSuggestions(
     data,
     searchText,
     isUserLocation = false,
@@ -353,9 +348,9 @@ const parseSuggestions = function (
             }
         }
     }
-};
+}
 
-const updateAdress = async function (position) {
+async function updateAdress(position) {
     axios({
         url: '/api/resolveadress',
         method: 'get',
@@ -386,9 +381,9 @@ const updateAdress = async function (position) {
                 );
             }
         });
-};
+}
 
-const resolveAdress = async function (position, update) {
+async function resolveAdress(position, update) {
     axios({
         url: '/api/resolveadress',
         method: 'get',
@@ -415,7 +410,7 @@ const resolveAdress = async function (position, update) {
                 })
             );
         });
-};
+}
 
 const parseUserAdress = (feature, update) => {
     const id = Number(feature.id.split('.')[1]);
