@@ -4,14 +4,19 @@ const router = express.Router();
 const primaryToken = 'pk.eyJ1IjoieWFwYWxleGVpIiwiYSI6ImNqNGVuaDRwdjBwZ2MycW1rM2FrMmpmNTQifQ.ouDro4DGQ4viVjdBgaI_Xg';
 
 router.get('/', async (req, res) => {
-    console.log('Resolve Adress from Mapbox API');
+    re = new RegExp(/\w+/);
+    console.log('get suggestion from Mapbox API');
     if (Object.keys(req.query).length) {
-        const query = req.query.longitude + ',' + req.query.latitude;
+        const query = req.query.string;
         const lang = req.query.lang;
         const baseurl = `https://api.mapbox.com/geocoding/v5/mapbox.places/`;
         const params = {
+            limit: '10',
             language: lang,
             types: 'place',
+            autocomplete: 'true',
+            // routing: 'false',
+            // worldview: lang,
             access_token: primaryToken,
         };
         let paramsArray = [];
